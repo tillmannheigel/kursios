@@ -4,7 +4,7 @@ Tillmannheigel::Application.routes.draw do
   get "worksheets/update"
   get "worksheets/edit/:id" => "worksheets#edit", as:"edit_worksheet" 
   get "worksheets/index" => "worksheets#index", as:"root"
-  get "worksheets/:id" => "worksheet#show", as:"worksheet"
+  get "worksheets/:id" => "worksheets#show", as:"worksheet"
   delete "worksheets/:id" => "worksheets#destroy", as: "delete_worksheet"
 
   # The priority is based upon order of creation: first created -> highest priority.
