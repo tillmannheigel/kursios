@@ -29,7 +29,7 @@ Tillmannheigel::Application.configure do
   
   config.dev_tweaks.autoload_rules do
   # Reload on XHR requests
-  keep :xhr
-end
+    keep :xhr
+  end
 
 end

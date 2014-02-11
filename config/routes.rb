@@ -1,5 +1,5 @@
 Tillmannheigel::Application.routes.draw do
-  get "worksheets/new" => "worksheets#new", as:"new_worksheet"
+  post "worksheets/new" => "worksheets#new", as:"new_worksheet"
   get "worksheets/create"
   get "worksheets/update"
   get "worksheets/edit/:id" => "worksheets#edit", as:"edit_worksheet" 
