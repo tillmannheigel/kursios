@@ -32,6 +32,9 @@ class WorksheetsController < ApplicationController
   end
 
   def destroy
+    @worksheet = Worksheet.find(params[:id])
+    @worksheet.destroy
+    redirect_to worksheets_path
   end
 
   def index
