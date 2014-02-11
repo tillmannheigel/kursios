@@ -1,11 +1,11 @@
 Tillmannheigel::Application.routes.draw do
   get "worksheets" => "worksheets#index", as:"worksheets"
-  post "worksheets/new" => "worksheets#new", as:"new_worksheet"
   get "worksheets/edit/:id" => "worksheets#edit", as:"edit_worksheet" 
   get "worksheets/index" => "worksheets#index", as:"root"
   get "worksheets/:id" => "worksheets#show", as:"worksheet"
   delete "worksheets/:id" => "worksheets#destroy", as: "delete_worksheet"
   patch "worksheets/:id" => "worksheets#update" 
+  post "worksheets/new" => "worksheets#new", as:"new_worksheet"
   post "worksheets" => "worksheets#create"
 
 
