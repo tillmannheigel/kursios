@@ -15,9 +15,9 @@ class WorksheetsController < ApplicationController
   end
 
   def index
+        @worksheets = Worksheet.all
   end
 
   def show
-    @worksheets = Worksheet.all
   end
 end
