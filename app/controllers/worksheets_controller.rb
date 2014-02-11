@@ -18,5 +18,6 @@ class WorksheetsController < ApplicationController
   end
 
   def show
+    @worksheets = worksheet.all
   end
 end
