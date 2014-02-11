@@ -1,14 +1,24 @@
 class WorksheetsController < ApplicationController
   def new
+    @worksheet = Worksheet.new
   end
 
   def create
-  end
-
-  def update
+    @worksheet = Worksheet.create
+    if @worksheet.save?
+      redirect_to "root"
+    else
+      redirect_to "root"
+      #flash "fail"
+    end
   end
 
   def edit
+    @worksheet = Worksheets.find(params[:id])
+  end
+  
+  def show
+    @worksheet = Worksheets.find(params[:id])
   end
 
   def destroy
@@ -18,6 +28,4 @@ class WorksheetsController < ApplicationController
         @worksheets = Worksheet.all
   end
 
-  def show
-  end
 end
