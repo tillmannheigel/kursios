@@ -1,4 +1,5 @@
 Tillmannheigel::Application.routes.draw do
+  get "worksheets" => "worksheets#index", as:"worksheets"
   post "worksheets/new" => "worksheets#new", as:"new_worksheet"
   get "worksheets/create"
   get "worksheets/update"
