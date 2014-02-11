@@ -4,7 +4,7 @@ class WorksheetsController < ApplicationController
   end
   
   def create
-    @myWorksheet = Worksheet.new(params[:worksheets].permit(:title,:max_points,:filling_date))
+    @myWorksheet = Worksheet.new(params[:worksheet])
     if @myWorksheet.save
       redirect_to worksheets_path
     else
