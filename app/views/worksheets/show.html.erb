@@ -1,2 +1,15 @@
-<h1>Worksheets#show</h1>
-<p>Find me in app/views/worksheets/show.html.erb</p>
+  <h3>Details zum Worksheet</h3>
+  <p>
+    <b>Titel:</b>
+    <%= @worksheet.title %>
+  </p>
+ <p>
+    <b>Maximal erreichbare Punktzahl:</b>
+    <%= @worksheet.maximum_points %>
+  </p>
+<p>
+<b>Abgabe am:</b>
+<%= @worksheet.filling_date %>
+</p>
+
+<p><%= link_to "Zurück zur Liste", worksheets_path %></p>
