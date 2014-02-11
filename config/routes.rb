@@ -3,7 +3,7 @@ Tillmannheigel::Application.routes.draw do
   get "worksheets/create"
   get "worksheets/update"
   get "worksheets/edit/:id" => "worksheets#edit", as:"edit_worksheet" 
-  get "worksheets/index" => "worksheets#index", as:"root_path"
+  get "worksheets/index" => "worksheets#index", as:"root"
   get "worksheets/:id" => "worksheet#show", as:"worksheet"
   delete "worksheets/:id" => "worksheets#destroy", as: "delete_worksheet"
 
