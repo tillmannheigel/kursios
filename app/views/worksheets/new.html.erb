@@ -1,5 +1,5 @@
 <h3>Worksheet erstellen</h3>
-<%= form_for @worksheet, :url => worksheets_path, :html => {:class =>"form-horizontal"} do |f|  %> 
+<%= form_for @worksheet, :html => {:class =>"form-horizontal"} do |f|  %> 
 <div class="form-group">
 	<%= f.label :title %>
 	<%= f.text_field :title, :class => "form-control" %>
