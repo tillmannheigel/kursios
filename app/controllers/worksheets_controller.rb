@@ -1,6 +1,10 @@
 class WorksheetsController < ApplicationController
   def new
-    @myWorksheet = Worksheet.new(params:worksheets)
+    @worksheet = Worksheet.new
+  end
+  
+  def create
+    @myWorksheet = Worksheet.new(params[:worksheets])
     if @myWorksheet.save?
       redirect_to worksheets_path
     else
