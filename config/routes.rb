@@ -1,12 +1,12 @@
 Tillmannheigel::Application.routes.draw do
   get "worksheets" => "worksheets#index", as:"worksheets"
   post "worksheets/new" => "worksheets#new", as:"new_worksheet"
-  get "worksheets/create"
   get "worksheets/update"
   get "worksheets/edit/:id" => "worksheets#edit", as:"edit_worksheet" 
   get "worksheets/index" => "worksheets#index", as:"root"
   get "worksheets/:id" => "worksheets#show", as:"worksheet"
   delete "worksheets/:id" => "worksheets#destroy", as: "delete_worksheet"
+  patch "worksheets/:id" => "worksheets#create" 
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
