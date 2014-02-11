@@ -6,7 +6,7 @@ Tillmannheigel::Application.routes.draw do
   get "worksheets/index"
   get "worksheets/:id" => "worksheet#show", as:"worksheet"
   delete "worksheets/:id" => "worksheets#destroy", as: "delete_worksheet"
-  get "home/", as "root_path"
+  get "home/", as:"root_path"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
