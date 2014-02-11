@@ -5,7 +5,7 @@ class WorksheetsController < ApplicationController
   
   def create
     @myWorksheet = Worksheet.new(params[:worksheets])
-    if @myWorksheet.save?
+    if @myWorksheet.save
       redirect_to worksheets_path
     else
       #flash "fail"
