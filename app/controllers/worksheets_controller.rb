@@ -5,7 +5,7 @@ class WorksheetsController < ApplicationController
 
   def update
     @myWorksheet = Worksheet.find(params[:id])
-    if @myWorksheet.update_attributes!(params[:worksheets].permit(:title,:max_points))
+    if @myWorksheet.update_attributes(params[:worksheets].permit(:title,:max_points,:filling_date))
       redirect_to root_path
     else
       render "fail"
