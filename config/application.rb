@@ -20,6 +20,6 @@ module Tillmannheigel
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
     
-    config.assets.prefix = '/fcgi-bin/assets'
+    config.assets.prefix = '/../assets'
   end
 end
