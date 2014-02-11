@@ -1,12 +1,18 @@
 class WorksheetsController < ApplicationController
   def new
-    @worksheet = Worksheet.new
+    @myWorksheet = Worksheet.new(params:worksheets)
+    if @myWorksheet.save?
+      redirect_to worksheets_path
+    else
+      #flash "fail"
+      render "fail"
+    end
   end
 
   def update
     @myWorksheet = Worksheet.find(params[:id])
     if @myWorksheet.update_attributes(params[:worksheets].permit(:title,:max_points,:filling_date))
-      redirect_to root_path
+      redirect_to worksheets_path
     else
       render "fail"
       #flash "fail"
