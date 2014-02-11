@@ -4,8 +4,7 @@ class WorksheetsController < ApplicationController
   end
 
   def update
-    @new_worksheet = params[:id]
-    @worksheet = Worksheet.find(params[:new_worksheet][:id])
+    @worksheet = params[:id]
     if @worksheet.update_attributes(params[:worksheet])
       redirect_to root_path
     else
