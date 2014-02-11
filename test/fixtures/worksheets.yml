@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  max_points: 1
+  filling_date: 2014-02-11
+  data: 
+
+two:
+  title: MyString
+  max_points: 1
+  filling_date: 2014-02-11
+  data: 
