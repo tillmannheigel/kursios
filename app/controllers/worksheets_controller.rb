@@ -3,9 +3,9 @@ class WorksheetsController < ApplicationController
     @worksheet = Worksheet.new
   end
 
-  def create
-    @worksheet = Worksheet.create
-    if @worksheet.save?
+  def update
+    @worksheet = Worksheet.find(params[:id])
+    if @worksheet.update_attributes(params[:worksheet])
       redirect_to "root"
     else
       redirect_to "root"
