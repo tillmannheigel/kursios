@@ -1,4 +1,11 @@
 Tillmannheigel::Application.routes.draw do
+  get "worksheets/new"
+  get "worksheets/create"
+  get "worksheets/update"
+  get "worksheets/edit"
+  get "worksheets/destroy"
+  get "worksheets/index"
+  get "worksheets/show"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
