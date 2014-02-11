@@ -27,6 +27,14 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
+# Bootstrap
+gem 'bootstrap-sass'
+
+# gem to generate files for an application layout, navigation links, and flash messages styled with Bootstrap CSS classes and layout.
+group :development do
+  gem 'rails_layout'
+end
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
