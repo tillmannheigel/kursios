@@ -25,6 +25,11 @@ Tillmannheigel::Application.configure do
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
-  config.assets.debug = true
+  config.assets.debug = false
+  
+  config.dev_tweaks.autoload_rules do
+  # Reload on XHR requests
+  keep :xhr
+end
 
 end

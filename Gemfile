@@ -33,6 +33,7 @@ gem 'bootstrap-sass'
 # gem to generate files for an application layout, navigation links, and flash messages styled with Bootstrap CSS classes and layout.
 group :development do
   gem 'rails_layout'
+  gem 'rails-dev-tweaks'
 end
 
 group :doc do
