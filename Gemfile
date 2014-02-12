@@ -36,6 +36,8 @@ group :development do
   gem 'rails-dev-tweaks'
 end
 
+gem "remotipart", "~> 1.0"
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
