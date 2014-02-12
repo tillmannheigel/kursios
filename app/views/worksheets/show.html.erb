@@ -16,6 +16,8 @@
 <b>Download:</b>
 <% if @hasAttachment%>
 <%= link_to @filename, { :action=>"download", :data=> @attachment_id , :controller => "downloads"}, :remote=>true %>
+<br>
+<i>Bitte mit "Ziel speichern unter..." downloaden</i>
 <% else %>
 --- noch kein Übungsblatt hochgeladen ---
 <% end %>
