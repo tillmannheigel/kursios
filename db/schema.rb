@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140211155510) do
+ActiveRecord::Schema.define(version: 20140212095552) do
 
   create_table "worksheets", force: true do |t|
     t.string   "title"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 20140211155510) do
     t.binary   "data"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "filename"
+    t.string   "mime_type"
   end
 
 end
