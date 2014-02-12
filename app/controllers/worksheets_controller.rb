@@ -16,7 +16,11 @@ class WorksheetsController < ApplicationController
   def update
     @myWorksheet = Worksheet.find(params[:id])
     if @myWorksheet.update_attributes(params[:worksheets].permit(:title,:max_points,:filling_date))
+      if !params[:worksheets][:data]
       redirect_to worksheets_path
+      else
+        addAttachmentToWorksheet @myWorksheet, params[:worksheets][:data]
+      end
     else
       render "fail"
       #flash "fail"
@@ -40,5 +44,20 @@ class WorksheetsController < ApplicationController
   def index
         @worksheets = Worksheet.all
   end
+  
+  def addAttachmentToWorksheet(worksheet, data)
+    @attachment = Attachment.new
+    @attachment.uploaded_file = data
+    
+        if @attachment.save
+            worksheet.attachment_id = @attachment.id
+            flash[:notice] = "Thank you for your submission..."
+            redirect_to worksheet_path
+        else
+            flash[:error] = "There was a problem submitting your attachment."
+            redirect_to worksheet_path
+        end
+        
+    end
 
 end

@@ -11,17 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140212095552) do
+ActiveRecord::Schema.define(version: 20140212181922) do
+
+  create_table "attachments", force: true do |t|
+    t.string   "filename"
+    t.string   "content_type"
+    t.binary   "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "worksheets", force: true do |t|
     t.string   "title"
     t.integer  "max_points"
     t.date     "filling_date"
-    t.binary   "data"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "filename"
-    t.string   "mime_type"
+    t.integer  "attachment_id"
   end
 
 end
