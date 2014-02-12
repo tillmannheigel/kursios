@@ -33,9 +33,14 @@ class WorksheetsController < ApplicationController
   
   def show
     @worksheet = Worksheets.find(params[:id])
-    attachment = Attachment.find(@worksheet.attachment_id)
-    @filename = attachment.filename
-    @attachment_id = attachment.id
+    if @worksheet.attachment_id
+      @hasAttachment = true
+      attachment = Attachment.find(@worksheet.attachment_id)
+      @filename = attachment.filename
+      @attachment_id = attachment.id
+    else
+      @hasAttachment = false
+    end
   end
 
   def destroy

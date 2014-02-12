@@ -14,7 +14,11 @@
 
 <p>
 <b>Download:</b>
+<% if @hasAttachment%>
 <%= link_to @filename, { :action=>"download", :data=> @attachment_id , :controller => "downloads"}, :remote=>true %>
+<% else %>
+--- noch kein Übungsblatt hochgeladen ---
+<% end %>
 </p>
 
 <p><%= link_to "Zurück zur Liste", worksheets_path %></p>
