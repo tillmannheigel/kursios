@@ -1,26 +1,22 @@
   <h3>Details zum Worksheet</h3>
-  <p>
-    <b>Titel:</b>
-    <%= @worksheet.title %>
-  </p>
- <p>
-    <b>Maximal erreichbare Punktzahl:</b>
-    <%= @worksheet.max_points %>
-  </p>
-<p>
-<b>Abgabe am:</b>
-<%= @worksheet.filling_date %>
-</p>
-
-<p>
-<b>Download:</b>
-<% if @hasAttachment%>
-<%= link_to @filename, { :action=>"download", :data=> @attachment_id , :controller => "downloads"}, :remote=>true %>
-<br>
-<i>Bitte mit "Ziel speichern unter..." downloaden</i>
-<% else %>
---- noch kein Übungsblatt hochgeladen ---
-<% end %>
-</p>
-
+<dl>
+  	<dt>Titel</dt>
+  	<dd><%= @worksheet.title %></dd>
+  	
+	<dt>Maximal erreichbare Punktzahl</dt>
+    <dd><%= @worksheet.max_points %></dd>
+    
+	<dt>Abgabe</dt>
+	<dd><%= @worksheet.filling_date %></dd>
+	
+	<dt>Download</dl>
+	<dd>
+		<% if @hasAttachment%>
+			<%= link_to @filename, { :action=>"download", :data=> @attachment_id , :controller => "downloads"}, :remote=>true %>
+			<br><small>Bitte mit "Ziel speichern unter..." downloaden</small>
+		<% else %>
+			--- noch kein Übungsblatt hochgeladen ---
+		<% end %>
+	</dd>
+	<br>
 <p><%= link_to "Zurück zur Liste", worksheets_path %></p>
