@@ -33,6 +33,9 @@ class WorksheetsController < ApplicationController
   
   def show
     @worksheet = Worksheets.find(params[:id])
+    attachment = Attachment.find(@worksheet.attachment_id)
+    @filename = attachment.filename
+    @attachment_id = attachment.id
   end
 
   def destroy
@@ -46,18 +49,27 @@ class WorksheetsController < ApplicationController
   end
   
   def addAttachmentToWorksheet(worksheet, data)
-    @attachment = Attachment.new
+    if !worksheet.attachment_id
+      @attachment = Attachment.new
+    else
+      @attachment = Attachment.find(worksheet.attachment_id)
+    end
     @attachment.uploaded_file = data
     
         if @attachment.save
             worksheet.attachment_id = @attachment.id
+            if worksheet.save
             flash[:notice] = "Thank you for your submission..."
             redirect_to worksheet_path
+            else
+            flash[:error] = "There was a problem storing your attachment."
+            redirect_to worksheet_path
+            end
         else
             flash[:error] = "There was a problem submitting your attachment."
             redirect_to worksheet_path
         end
         
     end
-
+   
 end

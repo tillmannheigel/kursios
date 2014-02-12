@@ -8,7 +8,7 @@ Tillmannheigel::Application.routes.draw do
   post "worksheets/new" => "worksheets#new", as:"new_worksheet"
   post "worksheets" => "worksheets#create"
 
-
+  get "download/:id" => "downloads#download"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

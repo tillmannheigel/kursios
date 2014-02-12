@@ -12,4 +12,9 @@
 <%= @worksheet.filling_date %>
 </p>
 
+<p>
+<b>Download:</b>
+<%= link_to @filename, { :action=>"download", :data=> @attachment_id , :controller => "downloads"}, :remote=>true %>
+</p>
+
 <p><%= link_to "Zurück zur Liste", worksheets_path %></p>
