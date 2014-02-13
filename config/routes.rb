@@ -1,4 +1,6 @@
 Tillmannheigel::Application.routes.draw do
+  resources :users, only: [:new, :create]  
+  
   get "worksheets" => "worksheets#index", as:"worksheets"
   get "worksheets/edit/:id" => "worksheets#edit", as:"edit_worksheet" 
   get "worksheets/index" => "worksheets#index", as:"root"

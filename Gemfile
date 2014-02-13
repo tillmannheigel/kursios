@@ -30,13 +30,16 @@ gem 'jbuilder', '~> 1.2'
 # Bootstrap
 gem 'bootstrap-sass'
 
+gem "bcrypt-ruby"
+
+gem 'email_regex'
+
 # gem to generate files for an application layout, navigation links, and flash messages styled with Bootstrap CSS classes and layout.
 group :development do
   gem 'rails_layout'
   gem 'rails-dev-tweaks'
 end
 
-gem "remotipart", "~> 1.0"
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

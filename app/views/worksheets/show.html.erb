@@ -9,13 +9,13 @@
 	<dt>Abgabe</dt>
 	<dd><%= @worksheet.filling_date %></dd>
 	
-	<dt>Download</dl>
+	<dt>Download</dt>
 	<dd>
 		<% if @hasAttachment%>
 			<%= link_to @filename, { :action=>"download", :data=> @attachment_id , :controller => "downloads"}, :remote=>true %>
 			<br><small>Bitte mit "Ziel speichern unter..." downloaden</small>
 		<% else %>
-			--- noch kein Übungsblatt hochgeladen ---
+			<small>--- noch kein Übungsblatt hochgeladen ---</small>
 		<% end %>
 	</dd>
 	<br>
