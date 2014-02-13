@@ -13,11 +13,18 @@
       <%= render 'layouts/navigation' %>
     </header>
     <main role="main">
+       <div class="col-xs-6 col-md-3" id="left">
+       </div>
+
+   	   <div class="col-xs-12 col-md-6" id="main">
+
        <%= render 'layouts/messages' %>
-       <div class="col-md-6">
 
        <%= yield %>
-       
+       </div>
+
+        <div class="col-xs-6 col-md-3" id="left">
+
        </div>
     </main>
   </body>

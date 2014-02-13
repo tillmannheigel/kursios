@@ -64,15 +64,16 @@ class WorksheetsController < ApplicationController
         if @attachment.save
             worksheet.attachment_id = @attachment.id
             if worksheet.save
+            redirect_to worksheet_path
             flash[:notice] = "Thank you for your submission..."
-            redirect_to worksheet_path
             else
-            flash[:error] = "There was a problem storing your attachment."
             redirect_to worksheet_path
+            flash[:error] = "There was a problem storing your attachment."
             end
         else
-            flash[:error] = "There was a problem submitting your attachment."
             redirect_to worksheet_path
+            flash[:error] = "There was a problem submitting your attachment."
+
         end
         
     end

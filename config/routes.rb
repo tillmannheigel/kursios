@@ -1,6 +1,6 @@
 Tillmannheigel::Application.routes.draw do
-  resources :users, only: [:new, :create]  
-  
+  resources :users, only: [:new, :create] 
+  resources :sessions, only: [:new] 
   get "worksheets" => "worksheets#index", as:"worksheets"
   get "worksheets/edit/:id" => "worksheets#edit", as:"edit_worksheet" 
   get "worksheets/index" => "worksheets#index", as:"root"
@@ -9,7 +9,7 @@ Tillmannheigel::Application.routes.draw do
   patch "worksheets/:id" => "worksheets#update" 
   post "worksheets/new" => "worksheets#new", as:"new_worksheet"
   post "worksheets" => "worksheets#create"
-
+  post "sessions" => "sessions#create", as: "sessions"
   get "download/:id" => "downloads#download"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
