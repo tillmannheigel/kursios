@@ -31,5 +31,6 @@ Tillmannheigel::Application.configure do
   # Reload on XHR requests
     keep :xhr
   end
+     config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
 end

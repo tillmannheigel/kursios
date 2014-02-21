@@ -1,4 +1,6 @@
-class User < ActiveRecord::Base
-  has_secure_password
+class User < ActiveRecord::Base  
+ attr_accessible :email
+   has_secure_password
+
   
 end

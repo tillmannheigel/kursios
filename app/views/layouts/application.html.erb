@@ -6,6 +6,7 @@
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Tillmannheigel" %>">
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag '//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js', :defer => true, :async => true%>
     <%= csrf_meta_tags %>
   </head>
   <body>
@@ -14,6 +15,9 @@
     </header>
     <main role="main">
        <div class="col-xs-6 col-md-3" id="left">
+       	<h3>
+
+       	</h3>
        </div>
 
    	   <div class="col-xs-12 col-md-6" id="main">
@@ -27,5 +31,8 @@
 
        </div>
     </main>
+        <footer class="navbar-fixed-bottom">
+      <small><%= link_to 'admin', new_admin_session_path, :class => "color: gray-lighter" %></small>
+    </footer>
   </body>
 </html>

@@ -34,6 +34,9 @@ gem "bcrypt-ruby"
 
 gem 'email_regex'
 
+gem 'devise'
+
+
 # gem to generate files for an application layout, navigation links, and flash messages styled with Bootstrap CSS classes and layout.
 group :development do
   gem 'rails_layout'

@@ -4,18 +4,27 @@
 	<th>Zettel</th>
 	<th>Abgabedatum</th>
 	<th>Details</th>
+	<% if admin_signed_in?%>
 	<th>Bearbeiten</th>
 	<th>Löschen</th>
+	<%end%>
 	</tr>
 	<% @worksheets.each do |w|%>
 	<tr class="table-body">
 	<td><%= w.title %></td>
 	<td><%= w.filling_date %></td>
 	<td><%= link_to '<i class="glyphicon glyphicon-info-sign"></i>'.html_safe, worksheet_path(w.id) %></td>
+	<% if admin_signed_in?%>
+
 	<td><%= link_to '<i class="glyphicon glyphicon-pencil"></i>'.html_safe, edit_worksheet_path(w.id) %></td>
 	<td><%= link_to '<i class="glyphicon glyphicon-remove" alt="delete"></i>'.html_safe, delete_worksheet_path(w.id),data: {confirm: "Wirklich löschen"}, method: :delete %></td>
+		<%end%>
+
 	</tr>
 	<% end %>
 </table>
+	<% if admin_signed_in?%>
+
 <%= button_to "Anlegen", new_worksheet_path, :class=>"btn btn-default" %>
+		<%end%>
 
