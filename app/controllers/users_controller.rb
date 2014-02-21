@@ -1,3 +1,5 @@
+  require 'bcrypt'
+
 class UsersController < ApplicationController
   include BCrypt
     
