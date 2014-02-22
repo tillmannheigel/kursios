@@ -12,7 +12,13 @@
     </div>
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <%= render 'layouts/navigation_links' %>
+        <% if admin_signed_in?%>
+        <%= render 'layouts/navigation_admins' %>
+        <% elsif student_signed_in? %>
+        <%= render 'layouts/navigation_students' %>
+        <% else %>
+        <%= render 'layouts/navigation_guests' %>
+        <% end %>
       </ul>
       <ul class="nav navbar-nav navbar-right">
       	 <%= render 'layouts/navigation_right' %>
