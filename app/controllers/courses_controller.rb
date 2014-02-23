@@ -12,7 +12,7 @@ class CoursesController < ApplicationController
   end
   
   def create
-    @course = Course.new(:name => params[:course][:name], :tutor_id => params[:tutor][:tutor_id])
+    @course = Course.new(:name => params[:course][:name], :tutor_id => params[:course][:tutor_id])
     if @course.save
       redirect_to courses_path
       flash[:notice] = "Course has been generated."
@@ -24,6 +24,19 @@ class CoursesController < ApplicationController
   
   def edit
      @course = Course.find(params[:id])
+     @tutors = Tutor.all :select => 'email, id'
+  end
+  
+    def update
+    @course = Course.find(params[:id])
+    @course.assign_attributes(:name => params[:course][:name], :tutor_id => params[:course][:tutor_id])
+    if @course.save
+      redirect_to courses_path
+      flash[:notice] = "Course has been updated."
+    else
+      redirect_to courses_path
+      flash[:error] = "Course has NOT been u."
+    end
   end
   
   def destroy

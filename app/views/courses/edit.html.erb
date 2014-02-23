@@ -9,8 +9,8 @@
 	<%= f.text_field :name, :class => "form-control" %>
 </div>
 <div class="form-group">
-	<%= f.label :tutor %>
-	<%= collection_select(:course,:tutor_id,@tutors, :id, :email, prompt: true) %>
+	<%= f.label :tutor %><br>
+	<%= collection_select(:course,:tutor_id,@tutors, :id, :email, prompt: true, selected: @course.tutor) %>
 
 </div>
 <div class=

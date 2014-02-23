@@ -2,6 +2,7 @@ Tillmannheigel::Application.routes.draw do
   root "home#index"
   get "info/info", as:"info"
   post "students/create" => "students#create", as:"create_student_as_admin"
+  post "students/update/:id" => "students#updateCourses", as:"update_students_courses"
   devise_for :admins
   devise_for :students
   devise_for :tutors

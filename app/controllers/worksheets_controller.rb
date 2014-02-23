@@ -5,10 +5,12 @@ class WorksheetsController < ApplicationController
   
   def new
     @worksheet = Worksheet.new
+    @courses = Course.all
   end
   
   def create
     @myWorksheet = Worksheet.new(params[:worksheet].permit(:title,:max_points,:filling_date))
+    @myWorksheet.course_id = params[:course][:course_id]
     if @myWorksheet.save
       redirect_to worksheets_path
     else
@@ -19,11 +21,13 @@ class WorksheetsController < ApplicationController
 
   def update
     @myWorksheet = Worksheet.find(params[:id])
-    if @myWorksheet.update_attributes(params[:worksheets].permit(:title,:max_points,:filling_date))
-      if !params[:worksheets][:data]
+    @myWorksheet.assign_attributes(params[:worksheet].permit(:title,:max_points,:filling_date))
+    @myWorksheet.course_id = params[:course][:course_id]
+    if @myWorksheet.save
+      if !params[:worksheet][:data]
       redirect_to worksheets_path
       else
-        addAttachmentToWorksheet @myWorksheet, params[:worksheets][:data]
+        addAttachmentToWorksheet @myWorksheet, params[:worksheet][:data]
       end
     else
       render "fail"
@@ -33,6 +37,7 @@ class WorksheetsController < ApplicationController
 
   def edit
     @worksheet = Worksheet.find(params[:id])
+    @courses = Course.all
   end
   
   def show

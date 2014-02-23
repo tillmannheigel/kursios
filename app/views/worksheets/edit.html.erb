@@ -5,6 +5,10 @@
 	<%= f.text_field :title, :class => "form-control" %>
 </div>
 <div class="form-group">
+	<%= f.label :course %><br />
+	<%= collection_select(:course,:course_id,@courses, :id, :name, prompt: true, selected: @worksheet.course_id, class: 'form-control') %>
+</div>
+<div class="form-group">
 	<%= f.label :max_points %>
 	<%= f.text_field :max_points, :class => "form-control" %>
 </div>

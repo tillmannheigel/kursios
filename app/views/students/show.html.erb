@@ -11,15 +11,51 @@
 <table class="table">
 	<tr class="table-header">
 	<th>Bezeichnung</th>
-	<th>Löschen</th>
 	</tr>
 	<% @courses.each do |c|%>
 	<tr class="table-body">
 	<td><%= c.name %></td>
-	<td><%= link_to '<i class="glyphicon glyphicon-remove" alt="delete"></i>'.html_safe, delete_worksheet_path(c.id),data: {confirm: "Wirklich löschen"}, method: :delete %></td>
 	</tr>
 	<% end %>
 </table>
+<button class="btn btn-primary" data-toggle="modal" data-target="#myModal"> edit </button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Kurs auswählen</h4>
+      </div>
+      <div class="modal-body">
+	<table class="table">
+	<tr class="table-header">
+	<th>Bezeichnung</th>
+	<th>ausgewählt</th>
+	</tr>
+	<%= form_tag  update_students_courses_path(@student.id) do %>
+
+	<% @all_courses.each do |c|%>
+	<tr class="table-body">
+	<td><%= c.name %></td>
+	<% if @courses.include?(c) %>
+	<td><%= check_box_tag  'checks[]', c.id, true  %></td>
+	<% else %>
+	<td><%= check_box_tag  'checks[]', c.id, false  %></td>
+	<% end %>
+	</tr>
+	<% end %>
+	</table>     
+	 </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Abbrechen</button>
+	    <%= submit_tag "Aktualisieren", class: "btn btn-primary", "
+      </div>
+    </div>
+  </div>
+</div>
+
 </div>
 </div>
 </div>
