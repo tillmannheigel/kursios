@@ -1,3 +1,8 @@
+
+<div class="container">
+  <div class="row" id="login-container">
+    <div class="col col-md-4">
+
 <h2>Sign in</h2>
 
 <%= form_for(resource, :class =>"form-horizontal" , :as => resource_name, :url => session_path(resource_name)) do |f| %>
@@ -21,3 +26,7 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
+
+    </div>
+  </div>
+</div>

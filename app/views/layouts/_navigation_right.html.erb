@@ -1,6 +1,6 @@
 <li><div class="">
 	<% if !student_signed_in?&&!admin_signed_in?%>
-	<%= link_to 'Sign in/up',  new_student_session_path , :class=>"btn btn-primary navbar-btn" %>
+	<%= link_to 'Sign in',  new_student_session_path , :class=>"btn btn-primary navbar-btn" %>
 	<% elsif !admin_signed_in? %>
 	<%= link_to 'Log out', destroy_student_session_path , :class=>"btn btn-danger navbar-btn",:method =>  :delete %>
 	<% else %>

@@ -14,12 +14,23 @@
 	<% if admin_signed_in?%>
 	<th>Bearbeiten</th>
 	<th>Löschen</th>
-	<%end%>
+	<% end %>
+	
+	<% @courses.each do |c|%>
+	<tr class="table-body">
+	<td><%= c.name %></td>
+	<td><%= link_to '<i class="glyphicon glyphicon-info-sign"></i>'.html_safe, course_path(c.id) %></td>
+	<td><%= c.tutor.email if c.tutor %></td>
+	<% if admin_signed_in?%>
+	<td><%= link_to '<i class="glyphicon glyphicon-pencil"></i>'.html_safe,  edit_course_path(c.id) %></td>
+	<td><%= link_to '<i class="glyphicon glyphicon-remove" alt="delete"></i>'.html_safe, course_path(c.id),data: {confirm: "Wirklich löschen"}, method: :delete %></td>
+	<% end %>
+	<% end %>
 	</tr>
 	
 </table>
 	<% if admin_signed_in?%>
 
-<%= button_to "Anlegen", new_worksheet_path, :class=>"btn btn-default" %>
+<%= link_to "Anlegen", new_course_path, :class=>"btn btn-default" %>
 		<%end%>
 

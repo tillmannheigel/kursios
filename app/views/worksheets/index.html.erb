@@ -3,6 +3,7 @@
 	<tr class="table-header">
 	<th>Zettel</th>
 	<th>Abgabedatum</th>
+	<th>Kurs</th>
 	<th>Details</th>
 	<% if admin_signed_in?%>
 	<th>Bearbeiten</th>
@@ -12,6 +13,8 @@
 	<% @worksheets.each do |w|%>
 	<tr class="table-body">
 	<td><%= w.title %></td>
+	<td><%= w.course.name if w.course %></td>
+
 	<td><%= w.filling_date %></td>
 	<td><%= link_to '<i class="glyphicon glyphicon-info-sign"></i>'.html_safe, worksheet_path(w.id) %></td>
 	<% if admin_signed_in?%>

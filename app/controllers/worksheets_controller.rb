@@ -32,11 +32,11 @@ class WorksheetsController < ApplicationController
   end
 
   def edit
-    @worksheet = Worksheets.find(params[:id])
+    @worksheet = Worksheet.find(params[:id])
   end
   
   def show
-    @worksheet = Worksheets.find(params[:id])
+    @worksheet = Worksheet.find(params[:id])
     if @worksheet.attachment_id
       @hasAttachment = true
       attachment = Attachment.find(@worksheet.attachment_id)

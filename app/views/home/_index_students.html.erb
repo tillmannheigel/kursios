@@ -2,14 +2,14 @@
 
     <h1>Mitgliederbereich</h1>
     <p>
-		Sie sind derzeit als <%= current_student.email %> angemeldet. 
-		Sie sind zur Zeit in 
+		Sie sind derzeit als <%= current_student.email %> angemeldet 
+		und sind zur Zeit in 
 		<%if current_student.courses.count == 0 %> 
 			keinem Kurs
 		<% elsif current_student.courses.count == 1 %> 
-			<% link_to "einem Kurs", show_course_path(current_students_courses.first.id) %>
-		<% else %> <%= current_student.courses.count %> 
-			<% link_to "Kursen", courses_path%> 
+			einem Kurs
+		<% else %> 
+			<%= current_student.courses.count %> Kursen 
 		<% end %>
 		eingeschrieben.
 		Ihre letzte Anmeldung war am <%= current_student.last_sign_in_at%>.

@@ -1,16 +1,25 @@
 <h3>List of Students</h3>
 <table class="table">
 	<tr class="table-header">
+	<th>id</th>
 	<th>email</th>
 	<th>last sign_in</th>
 	<th>created</th>
+	<th>courses</th>
+	<th>bearbeiten</th>
+
 		<% @students.each do |s|%>
+	
 	<tr class="table-body">
+	<td><%= s.id %></td>
 	<td><%= s.email %></td>
 	<td><%= s.last_sign_in_at %></td>
 	<td><%= s.created_at %></td>
-	</tr>
+	<td><%= s.courses.to_a.count %></td>
+	<td><%= link_to '<i class="glyphicon glyphicon-pencil"></i>'.html_safe,  student_path(s.id) %></td>
+
 	<% end %>
+	</tr>
 	</table>
 
 <%= link_to "Anlegen", new_student_path, :class=>"btn btn-default" %>

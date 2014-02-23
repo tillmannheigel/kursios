@@ -1,3 +1,6 @@
+<div class="container">
+  <div class="row" id="login-container">
+    <div class="col col-md-4">
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
 <%= form_for(resource, :class =>"form-horizontal", :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
@@ -34,3 +37,9 @@
 <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %></p>
 
 <%= link_to "Back", :back %>
+
+
+    </div>
+  </div>
+</div>
+

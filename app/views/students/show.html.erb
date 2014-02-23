@@ -1,0 +1,28 @@
+ <h3>Details zum Student</h3>
+<dl>
+  	<dt>Email</dt>
+  	<dd><%= @student.email %></dd>
+  	
+	<dt>Kurse</dt>
+    <dd>
+    	<div class="container">
+  		<div class="row" id="courses-container">
+    		<div class="col col-md-4">
+<table class="table">
+	<tr class="table-header">
+	<th>Bezeichnung</th>
+	<th>Löschen</th>
+	</tr>
+	<% @courses.each do |c|%>
+	<tr class="table-body">
+	<td><%= c.name %></td>
+	<td><%= link_to '<i class="glyphicon glyphicon-remove" alt="delete"></i>'.html_safe, delete_worksheet_path(c.id),data: {confirm: "Wirklich löschen"}, method: :delete %></td>
+	</tr>
+	<% end %>
+</table>
+</div>
+</div>
+</div>
+	</dd>
+</dl>
+<p><%= link_to "Zurück zur Liste", students_path %></p>

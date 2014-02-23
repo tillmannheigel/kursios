@@ -2,6 +2,12 @@ class StudentsController < ApplicationController
     
   before_filter :require_admin, only: [:index, :new, :create]
 
+  def show
+    @student = Student.find(params[:id])
+    @courses = @student.courses.to_a
+  end
+  
+
   def index
     @students = Student.all
   end
