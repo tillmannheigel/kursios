@@ -1,0 +1,8 @@
+        <% if admin_signed_in?%>
+        <%= render 'home/index_admins' %>
+        <% elsif student_signed_in? %>
+        <%= render 'home/index_students' %>
+        <% else %>
+        <%= render 'home/index_guests' %>
+        <% end %>
+        

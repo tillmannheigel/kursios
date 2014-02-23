@@ -1,0 +1,17 @@
+<h3>List of Students</h3>
+<table class="table">
+	<tr class="table-header">
+	<th>email</th>
+	<th>last sign_in</th>
+	<th>created</th>
+		<% @students.each do |s|%>
+	<tr class="table-body">
+	<td><%= s.email %></td>
+	<td><%= s.last_sign_in_at %></td>
+	<td><%= s.created_at %></td>
+	</tr>
+	<% end %>
+	</table>
+
+<%= link_to "Anlegen", new_student_path, :class=>"btn btn-default" %>
+

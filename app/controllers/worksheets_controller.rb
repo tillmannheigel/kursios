@@ -81,19 +81,5 @@ class WorksheetsController < ApplicationController
         end
         
     end
-    
-    def require_login
-      unless student_signed_in? || admin_signed_in?
-        redirect_to  new_student_session_path
-        flash[:error] = "Bitte erst einloggen!"
-      end
-    end
-    
-    def require_admin
-      unless admin_signed_in?
-        redirect_to root_path
-        flash[:error] = "Bitte als Admin anmelden!"
-      end
-    end
    
 end

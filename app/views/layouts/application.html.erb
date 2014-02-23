@@ -13,26 +13,19 @@
     <header>
       <%= render 'layouts/navigation' %>
     </header>
+        	<div class="container theme-showcase">
+
     <main role="main">
-       <div class="col-xs-6 col-md-3" id="left">
-       	<h3>
 
-       	</h3>
-       </div>
-
-   	   <div class="col-xs-12 col-md-6" id="main">
 
        <%= render 'layouts/messages' %>
 
        <%= yield %>
-       </div>
 
-        <div class="col-xs-6 col-md-3" id="left">
-
-       </div>
     </main>
-        <footer class="navbar-fixed-bottom">
-      <small><%= link_to 'admin', new_admin_session_path, :class => "color: gray-lighter" %></small>
-    </footer>
+                   </div>
+
+ 
+
   </body>
 </html>

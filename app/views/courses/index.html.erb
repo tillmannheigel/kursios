@@ -1,0 +1,25 @@
+<h3>
+	List of 
+	<%if admin_signed_in? %> all 
+	<%else %> your
+	<%end%>
+	Courses
+</h3>
+
+<table class="table">
+	<tr class="table-header">
+	<th>Name</th>
+	<th>Tutor</th>
+	<th>Details</th>
+	<% if admin_signed_in?%>
+	<th>Bearbeiten</th>
+	<th>Löschen</th>
+	<%end%>
+	</tr>
+	
+</table>
+	<% if admin_signed_in?%>
+
+<%= button_to "Anlegen", new_worksheet_path, :class=>"btn btn-default" %>
+		<%end%>
+
