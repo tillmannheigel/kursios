@@ -1,10 +1,11 @@
-<h3>List of all Worksheets</h3>
+<h3>	<%if admin_signed_in? %> All Worksheets
+	<%else %> Your Worksheets
+	<%end%></h3>
 <table class="table">
 	<tr class="table-header">
 	<th>Zettel</th>
 	<th>Kurs</th>
 	<th>Abgabedatum</th>
-	<th>Details</th>
 	<% if admin_signed_in?%>
 	<th>Bearbeiten</th>
 	<th>Löschen</th>
@@ -12,11 +13,10 @@
 	</tr>
 	<% @worksheets.each do |w|%>
 	<tr class="table-body">
-	<td><%= w.title %></td>
-	<td><%= w.course.name if w.course %></td>
+	<td><%= link_to w.title, worksheet_path(w.id)  %></td>
+	<td><%=w.course.name if w.course  %></td>
 
 	<td><%= w.filling_date %></td>
-	<td><%= link_to '<i class="glyphicon glyphicon-info-sign"></i>'.html_safe, worksheet_path(w.id) %></td>
 	<% if admin_signed_in?%>
 
 	<td><%= link_to '<i class="glyphicon glyphicon-pencil"></i>'.html_safe, edit_worksheet_path(w.id) %></td>

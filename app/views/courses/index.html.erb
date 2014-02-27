@@ -1,7 +1,6 @@
 <h3>
-	List of 
-	<%if admin_signed_in? %> all 
-	<%else %> your
+	<%if admin_signed_in? %> All 
+	<%else %> Your
 	<%end%>
 	Courses
 </h3>
@@ -10,7 +9,7 @@
 	<tr class="table-header">
 	<th>Name</th>
 	<th>Tutor</th>
-	<th>Details</th>
+	<th>Teilnehmer</th>
 	<% if admin_signed_in?%>
 	<th>Bearbeiten</th>
 	<th>Löschen</th>
@@ -18,9 +17,9 @@
 	
 	<% @courses.each do |c|%>
 	<tr class="table-body">
-	<td><%= c.name %></td>
+	<td><%= link_to c.name,  course_path(c.id) %></td>
 	<td><%= c.tutor.email if c.tutor %></td>
-	<td><%= link_to '<i class="glyphicon glyphicon-info-sign"></i>'.html_safe, course_path(c.id) %></td>
+	<td><%= c.students.count %>
 	<% if admin_signed_in?%>
 	<td><%= link_to '<i class="glyphicon glyphicon-pencil"></i>'.html_safe,  edit_course_path(c.id) %></td>
 	<td><%= link_to '<i class="glyphicon glyphicon-remove" alt="delete"></i>'.html_safe, course_path(c.id),data: {confirm: "Wirklich löschen"}, method: :delete %></td>
@@ -33,4 +32,6 @@
 
 <%= link_to "Anlegen", new_course_path, :class=>"btn btn-default" %>
 		<%end%>
+		
+		
 

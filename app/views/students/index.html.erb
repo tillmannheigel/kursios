@@ -1,22 +1,26 @@
-<h3>List of Students</h3>
+<h3>
+	<%if admin_signed_in? %> All Students
+	<%else %> Your Mates
+	<%end%>
+	</h3>
 <table class="table">
 	<tr class="table-header">
-	<th>id</th>
 	<th>email</th>
 	<th>last sign_in</th>
 	<th>created</th>
 	<th>courses</th>
 	<th>bearbeiten</th>
+	<th>löschen</th>
 
 		<% @students.each do |s|%>
 	
 	<tr class="table-body">
-	<td><%= s.id %></td>
-	<td><%= s.email %></td>
+	<td><%= link_to s.email, student_path(s.id) %></td>
 	<td><%= s.last_sign_in_at %></td>
 	<td><%= s.created_at %></td>
 	<td><%= s.courses.to_a.count %></td>
-	<td><%= link_to '<i class="glyphicon glyphicon-pencil"></i>'.html_safe,  student_path(s.id) %></td>
+	<td><%= link_to '<i class="glyphicon glyphicon-pencil"></i>'.html_safe,  edit_student_path(s.id) %></td>
+	<td><%= link_to '<i class="glyphicon glyphicon-remove" alt="delete"></i>'.html_safe, student_path(s.id),data: {confirm: "Wirklich löschen"}, method: :delete %></td>
 
 	<% end %>
 	</tr>

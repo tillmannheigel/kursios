@@ -2,11 +2,11 @@ Tillmannheigel::Application.routes.draw do
   root "home#index"
   get "info/info", as:"info"
   post "students/create" => "students#create", as:"create_student_as_admin"
-  post "students/update/:id" => "students#updateCourses", as:"update_students_courses"
+  patch "students/update/:id" => "students#updateCourses", as:"update_students_courses"
   devise_for :admins
   devise_for :students
   devise_for :tutors
-  resources :students, only: [:new,:index, :show]
+  resources :students
   resources :courses
   get "worksheets" => "worksheets#index", as:"worksheets"
   get "worksheets/edit/:id" => "worksheets#edit", as:"edit_worksheet" 
