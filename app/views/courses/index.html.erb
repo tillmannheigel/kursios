@@ -26,7 +26,7 @@
 	<% @courses.each do |c|%>
 	<tr class="table-body">
 	<td><%= link_to c.name,  course_path(c.id) %></td>
-	<td><%= link_to '<i class="glyphicon glyphicon-envelope"></i>'.html_safe,  send_message_path(c.tutor.id) %></td>
+	<td><%= link_to '<i class="glyphicon glyphicon-envelope"></i>'.html_safe,  send_message_path(c.tutor.id) if c.tutor %></td>
 	
 	<% if admin_signed_in?%>
 
