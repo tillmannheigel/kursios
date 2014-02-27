@@ -26,7 +26,7 @@
 	</tr>
 	<tr class="table-body">
 	<% courses.each do |c|%>
-	<td><%= c.name %></td>
+	<td><%= link_to c.name, course_path(c)  %></td>
 	</tr>
 	<%end%>
 
