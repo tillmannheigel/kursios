@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
     def require_admin
       unless admin_signed_in?
         redirect_to root_path
-        flash[:error] = "Bitte als Admin anmelden!"
+        flash[:error] = "Nur als Admin möglich!"
       end
     end
 

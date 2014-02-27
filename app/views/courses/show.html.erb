@@ -1,2 +1,7 @@
-<h1>Courses#show</h1>
+<ol class="breadcrumb">
+  <li><%= link_to 'Home', root_path %></li>
+  <li><%= link_to 'Kurse', courses_path %></li>
+  <li class="active"><%= @course.name %></li>
+</ol>
 <p>Find me in app/views/courses/show.html.erb</p>
+<p><%= link_to "Zurück", :back %></p>

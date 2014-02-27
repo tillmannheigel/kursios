@@ -1,5 +1,6 @@
 class StudentsController < ApplicationController
       before_filter :set_no_cache, only: [:show, :updateCourses]
+      before_filter :require_admin, only: [:destroy]
 
 
   def show
@@ -31,7 +32,6 @@ class StudentsController < ApplicationController
       end
      end
     else
-      @students = Student.all
     end
   end
   
@@ -92,4 +92,8 @@ class StudentsController < ApplicationController
       flash[:error] = "Student has NOT been deleted."
     end  end
   
+  def sendMessage
+      redirect_to :back
+      flash[:notice] = "Messaging is not implemented yet."
+  end
 end

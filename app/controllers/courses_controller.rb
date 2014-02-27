@@ -1,9 +1,16 @@
 class CoursesController < ApplicationController
   def index
-    @courses = Course.all
+    @courses = []
+    if admin_signed_in?
+      @courses = Course.all
+    elsif student_signed_in?
+      @courses = current_student.courses
+    else
+    end
   end
 
   def show
+    @course = Course.find(params[:id])
   end
   
   def new

@@ -6,25 +6,33 @@
 <table class="table">
 	<tr class="table-header">
 	<th>email</th>
+	<th>Nachricht</th>
+	<%if admin_signed_in? %>
 	<th>last sign_in</th>
 	<th>created</th>
 	<th>courses</th>
 	<th>bearbeiten</th>
 	<th>löschen</th>
+	<%end%>
 
 		<% @students.each do |s|%>
 	
 	<tr class="table-body">
 	<td><%= link_to s.email, student_path(s.id) %></td>
+	<td><%= link_to '<i class="glyphicon glyphicon-envelope"></i>'.html_safe,  send_message_path(s.id) %></td>
+
+	<%if admin_signed_in? %>
 	<td><%= s.last_sign_in_at %></td>
 	<td><%= s.created_at %></td>
 	<td><%= s.courses.to_a.count %></td>
 	<td><%= link_to '<i class="glyphicon glyphicon-pencil"></i>'.html_safe,  edit_student_path(s.id) %></td>
 	<td><%= link_to '<i class="glyphicon glyphicon-remove" alt="delete"></i>'.html_safe, student_path(s.id),data: {confirm: "Wirklich löschen"}, method: :delete %></td>
+	<%end%>
 
 	<% end %>
 	</tr>
 	</table>
-
-<%= link_to "Anlegen", new_student_path, :class=>"btn btn-default" %>
+<%if admin_signed_in? %>
+	<%= link_to "Anlegen", new_student_path, :class=>"btn btn-default" %>
+<%end%>
 

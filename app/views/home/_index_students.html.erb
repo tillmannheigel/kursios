@@ -9,7 +9,7 @@
 		<% elsif current_student.courses.count == 1 %> 
 			einem Kurs
 		<% else %> 
-			<%= current_student.courses.count %> Kursen 
+			<%= link_to current_student.courses.count.to_s+" Kursen", courses_path %> 
 		<% end %>
 		eingeschrieben.
 		Ihre letzte Anmeldung war am <%= current_student.last_sign_in_at%>.

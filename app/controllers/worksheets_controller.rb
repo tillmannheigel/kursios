@@ -63,15 +63,15 @@ class WorksheetsController < ApplicationController
   end
   
   def addAttachmentToWorksheet(worksheet, data)
-    if !worksheet.attachment_id
+    if worksheet.attachment.nil?
       @attachment = Attachment.new
     else
-      @attachment = Attachment.find(worksheet.attachment_id)
+      @attachment = worksheet.attachment
     end
     @attachment.uploaded_file = data
     
         if @attachment.save
-            worksheet.attachment_id = @attachment.id
+            worksheet.attachment = @attachment
             if worksheet.save
             redirect_to worksheet_path
             flash[:notice] = "Thank you for your submission..."

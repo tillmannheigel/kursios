@@ -10,6 +10,7 @@
 	<th>Name</th>
 	<th>Tutor</th>
 	<th>Teilnehmer</th>
+	<th>Nachricht an Tutor</th>
 	<% if admin_signed_in?%>
 	<th>Bearbeiten</th>
 	<th>Löschen</th>
@@ -20,6 +21,7 @@
 	<td><%= link_to c.name,  course_path(c.id) %></td>
 	<td><%= c.tutor.email if c.tutor %></td>
 	<td><%= c.students.count %>
+	<td><%= link_to '<i class="glyphicon glyphicon-envelope"></i>'.html_safe,  send_message_path(c.tutor.id) %></td>
 	<% if admin_signed_in?%>
 	<td><%= link_to '<i class="glyphicon glyphicon-pencil"></i>'.html_safe,  edit_course_path(c.id) %></td>
 	<td><%= link_to '<i class="glyphicon glyphicon-remove" alt="delete"></i>'.html_safe, course_path(c.id),data: {confirm: "Wirklich löschen"}, method: :delete %></td>
