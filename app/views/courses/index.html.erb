@@ -1,3 +1,7 @@
+<ol class="breadcrumb">
+  <li><%= link_to 'Home', root_path %></li>
+  <li class="active">Kurse</li>
+</ol>
 <h3>
 	<%if admin_signed_in? %> All 
 	<%else %> Your
@@ -7,27 +11,32 @@
 
 <table class="table">
 	<tr class="table-header">
-	<th>Name</th>
+	<th>Name</th>		
+	<th>Nachricht an Tutor</th>
+
+	<% if admin_signed_in?%>
+
 	<th>Tutor</th>
 	<th>Teilnehmer</th>
-	<th>Nachricht an Tutor</th>
-	<% if admin_signed_in?%>
 	<th>Bearbeiten</th>
 	<th>Löschen</th>
 	<% end %>
-	
+	</tr>
+
 	<% @courses.each do |c|%>
 	<tr class="table-body">
 	<td><%= link_to c.name,  course_path(c.id) %></td>
+	<td><%= link_to '<i class="glyphicon glyphicon-envelope"></i>'.html_safe,  send_message_path(c.tutor.id) %></td>
+	
+	<% if admin_signed_in?%>
+
 	<td><%= c.tutor.email if c.tutor %></td>
 	<td><%= c.students.count %>
-	<td><%= link_to '<i class="glyphicon glyphicon-envelope"></i>'.html_safe,  send_message_path(c.tutor.id) %></td>
-	<% if admin_signed_in?%>
 	<td><%= link_to '<i class="glyphicon glyphicon-pencil"></i>'.html_safe,  edit_course_path(c.id) %></td>
 	<td><%= link_to '<i class="glyphicon glyphicon-remove" alt="delete"></i>'.html_safe, course_path(c.id),data: {confirm: "Wirklich löschen"}, method: :delete %></td>
-	<% end %>
-	<% end %>
 	</tr>
+	<% end %>
+	<% end %>
 	
 </table>
 	<% if admin_signed_in?%>

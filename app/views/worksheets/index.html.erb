@@ -1,3 +1,8 @@
+<ol class="breadcrumb">
+  <li><%= link_to 'Home', root_path %></li>
+  <li class="active">Worksheets</li>
+</ol>
+
 <h3>	<%if admin_signed_in? %> All Worksheets
 	<%else %> Your Worksheets
 	<%end%></h3>
@@ -15,14 +20,11 @@
 	<tr class="table-body">
 	<td><%= link_to w.title, worksheet_path(w.id)  %></td>
 	<td><%=w.course.name if w.course  %></td>
-
 	<td><%= w.filling_date %></td>
 	<% if admin_signed_in?%>
-
 	<td><%= link_to '<i class="glyphicon glyphicon-pencil"></i>'.html_safe, edit_worksheet_path(w.id) %></td>
 	<td><%= link_to '<i class="glyphicon glyphicon-remove" alt="delete"></i>'.html_safe, delete_worksheet_path(w.id),data: {confirm: "Wirklich löschen"}, method: :delete %></td>
-		<%end%>
-
+	<% end %>
 	</tr>
 	<% end %>
 </table>

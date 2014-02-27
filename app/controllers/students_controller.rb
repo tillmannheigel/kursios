@@ -1,11 +1,11 @@
 class StudentsController < ApplicationController
       before_filter :set_no_cache, only: [:show, :updateCourses]
       before_filter :require_admin, only: [:destroy]
+      before_filter :require_login, only: [:same_courses]
 
 
   def show
     @student = Student.find(params[:id])
-    @courses = @student.courses.to_a
   end
   
     def edit
@@ -33,6 +33,11 @@ class StudentsController < ApplicationController
      end
     else
     end
+  end
+  
+  def same_courses
+    return current_student.courses.to_a
+
   end
   
   def new
@@ -96,4 +101,6 @@ class StudentsController < ApplicationController
       redirect_to :back
       flash[:notice] = "Messaging is not implemented yet."
   end
+  
+
 end

@@ -1,3 +1,7 @@
+<ol class="breadcrumb">
+  <li><%= link_to 'Home', root_path %></li>
+  <li class="active">Students</li>
+</ol>
 <h3>
 	<%if admin_signed_in? %> All Students
 	<%else %> Your Mates
@@ -14,9 +18,9 @@
 	<th>bearbeiten</th>
 	<th>löschen</th>
 	<%end%>
+	</tr>
 
-		<% @students.each do |s|%>
-	
+	<% @students.each do |s|%>
 	<tr class="table-body">
 	<td><%= link_to s.email, student_path(s.id) %></td>
 	<td><%= link_to '<i class="glyphicon glyphicon-envelope"></i>'.html_safe,  send_message_path(s.id) %></td>
@@ -27,10 +31,9 @@
 	<td><%= s.courses.to_a.count %></td>
 	<td><%= link_to '<i class="glyphicon glyphicon-pencil"></i>'.html_safe,  edit_student_path(s.id) %></td>
 	<td><%= link_to '<i class="glyphicon glyphicon-remove" alt="delete"></i>'.html_safe, student_path(s.id),data: {confirm: "Wirklich löschen"}, method: :delete %></td>
-	<%end%>
-
 	<% end %>
 	</tr>
+	<% end %>
 	</table>
 <%if admin_signed_in? %>
 	<%= link_to "Anlegen", new_student_path, :class=>"btn btn-default" %>
