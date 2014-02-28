@@ -1,0 +1,18 @@
+<div class="jumbotron">
+
+<div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Nächste Abgaben</h3>
+      </div>
+        <ul class="list-group">
+      	<% next_three_worksheets.each do |w| %>
+      	 <li class="list-group-item">
+      	 	<%= w.course.name %>
+      	 	<b><%= link_to w.title, worksheet_path(w) %> </b>
+      	 	<%= w.filling_date.to_formatted_s(:short) %>
+      	 	
+      	 	<br></li>
+        <% end %>
+      </ul>
+    </div>
+</div>

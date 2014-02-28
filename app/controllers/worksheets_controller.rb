@@ -59,7 +59,12 @@ class WorksheetsController < ApplicationController
   end
 
   def index
+    @worksheets = []
+      if admin_signed_in?
         @worksheets = Worksheet.all
+      elsif student_signed_in?
+        @worksheets = current_student.all_worksheets
+      end
   end
   
   def addAttachmentToWorksheet(worksheet, data)
