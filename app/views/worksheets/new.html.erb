@@ -17,6 +17,10 @@
 	<%= f.text_field :filling_date, :class => "form-control", :type => "date" %>
 </div>
 <div class="form-group">
+	<%= f.label :data %>
+	<%= f.file_field :data, :type => "file", :tag => "attachment" %>
+</div>
+<div class="form-group">
 	<%= f.submit :class=>"btn btn-default" %>
 	<%= link_to "Cancel",  worksheets_path %>
 </div>

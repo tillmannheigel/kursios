@@ -12,7 +12,11 @@ class WorksheetsController < ApplicationController
     @myWorksheet = Worksheet.new(params[:worksheet].permit(:title,:max_points,:filling_date))
     @myWorksheet.course_id = params[:course][:course_id]
     if @myWorksheet.save
+      if !params[:worksheet][:data]
       redirect_to worksheets_path
+      else
+        addAttachmentToWorksheet @myWorksheet, params[:worksheet][:data]
+      end
     else
       #flash "fail"
       render "fail"
@@ -78,14 +82,14 @@ class WorksheetsController < ApplicationController
         if @attachment.save
             worksheet.attachment = @attachment
             if worksheet.save
-            redirect_to worksheet_path
+            redirect_to worksheets_path
             flash[:notice] = "Thank you for your submission..."
             else
-            redirect_to worksheet_path
+            redirect_to worksheets_path
             flash[:error] = "There was a problem storing your attachment."
             end
         else
-            redirect_to worksheet_path
+            redirect_to worksheets_path
             flash[:error] = "There was a problem submitting your attachment."
 
         end

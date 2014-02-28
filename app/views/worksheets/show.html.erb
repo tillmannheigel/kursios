@@ -6,21 +6,60 @@
 </ol>
   <h3><%= @worksheet.title %></h3>
 <dl>
- 	
-	<dt>Maximal erreichbare Punktzahl</dt>
-    <dd><%= @worksheet.max_points %></dd>
-    
-	<dt>Abgabe</dt>
-	<dd><%= @worksheet.filling_date %></dd>
+
+<% if @worksheet.description %>
 	
-	<dt>Download</dt>
-	<dd>
-		<% if @worksheet.attachment.nil?%> 			
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Kurzbeschreibung</h3>
+  </div>
+  <div class="panel-body">
+	<%= @worksheet.description %>
+
+  </div>
+</div>
+
+<% end %>
+<% if @worksheet.max_points %>
+
+<div class="row">
+  <div class="col-md-4"><div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Maximal erreichbare Punktzahl</h3>
+  </div>
+  <div class="panel-body">
+    <%= @worksheet.max_points %>
+  </div>
+</div>
+</div>
+<% end %>
+<% if @worksheet.filling_date %>
+
+  <div class="col-md-4"><div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Abgabe</h3>
+  </div>
+  <div class="panel-body">
+    <%= @worksheet.filling_date %>
+  </div>
+</div></div>
+<% end %>
+<% if @worksheet.attachment %>
+
+  <div class="col-md-4"><div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Download</h3>
+  </div>
+  <div class="panel-body">
+    		<% if @worksheet.attachment.nil?%> 			
 			<small>--- noch kein Übungsblatt hochgeladen ---</small>
 		 <%else%>
 			<%= link_to @worksheet.attachment.filename, { :action=>"download", :data=> @worksheet.attachment , :controller => "downloads"}, :remote=>true %>
 			<br><small>Bitte mit "Ziel speichern unter..." downloaden</small> 
 		<%end%>
-	</dd>
-	<br>
+  </div>
+</div>
+</div>
+<%end%>
+</div>
 <p><%= link_to "Zurück", :back %></p>
