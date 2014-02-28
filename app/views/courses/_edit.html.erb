@@ -3,35 +3,24 @@
 <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal"> Bearbeiten </button>
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	   <%= form_for @worksheet, :html => {:class =>"form-horizontal"} do |f|  %> 
+	   <%= form_for @course, :html => {:class =>"form-horizontal"} do |f|  %> 
 
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Worksheet Bearbeiten</h4>
+        <h4 class="modal-title" id="myModalLabel">Kurs Bearbeiten</h4>
       </div>
       <div class="modal-body">
       	
 <div class="form-group">
-	<%= f.label :title %>
-	<%= f.text_field :title, :class => "form-control" %>
+	<%= f.label :name %>
+	<%= f.text_field :name, :class => "form-control" %>
 </div>
 <div class="form-group">
-	<%= f.label :course %><br />
-	<%= collection_select(:course,:course_id,@courses, :id, :name, prompt: true, selected: @worksheet.course_id, class: 'form-control') %>
-</div>
-<div class="form-group">
-	<%= f.label :max_points %>
-	<%= f.text_field :max_points, :class => "form-control" %>
-</div>
-<div class="form-group">
-	<%= f.label :filling_date %>
-	<%= f.text_field :filling_date, :class => "form-control", :type => "date" %>
-</div>
-<div class="form-group">
-	<%= f.label :data %>
-	<%= f.file_field :data, :type => "file", :tag => "attachment" %>
+	<%= f.label :tutor %><br>
+	<%= collection_select(:course,:tutor_id,@tutors, :id, :email, prompt: true, selected: @course.tutor) %>
+
 </div>
 
 	 </div>

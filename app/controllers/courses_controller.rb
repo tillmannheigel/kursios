@@ -11,6 +11,7 @@ class CoursesController < ApplicationController
 
   def show
     @course = Course.find(params[:id])
+    @tutors = Tutor.all
   end
   
   def new

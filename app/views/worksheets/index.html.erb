@@ -3,16 +3,30 @@
   <li class="active">Worksheets</li>
 </ol>
 
-<h3>	<%if admin_signed_in? %> All Worksheets
+
+	<div class="row">
+<div class="col-md-8">
+ <h3><%if admin_signed_in? %> All Worksheets
 	<%else %> Your Worksheets
 	<%end%></h3>
+</div>
+<div class="col-md-4">
+	<% if admin_signed_in?%>
+
+<%= button_to "Anlegen", new_worksheet_path, :class=>"btn btn-default pull-right" %>
+		<%end%>
+
+</div>
+</div>
+	
+	
+	
 <table class="table">
 	<tr class="table-header">
 	<th>Zettel</th>
 	<th>Kurs</th>
 	<th>Abgabedatum</th>
 	<% if admin_signed_in?%>
-	<th>Bearbeiten</th>
 	<th>Löschen</th>
 	<%end%>
 	</tr>
@@ -22,14 +36,9 @@
 	<td><%=w.course.name if w.course  %></td>
 	<td><%= w.filling_date %></td>
 	<% if admin_signed_in?%>
-	<td><%= link_to '<i class="glyphicon glyphicon-pencil"></i>'.html_safe, edit_worksheet_path(w.id) %></td>
 	<td><%= link_to '<i class="glyphicon glyphicon-remove" alt="delete"></i>'.html_safe, delete_worksheet_path(w.id),data: {confirm: "Wirklich löschen"}, method: :delete %></td>
 	<% end %>
 	</tr>
 	<% end %>
 </table>
-	<% if admin_signed_in?%>
-
-<%= button_to "Anlegen", new_worksheet_path, :class=>"btn btn-default" %>
-		<%end%>
 
