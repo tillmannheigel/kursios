@@ -3,6 +3,8 @@
 <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal"> Bearbeiten </button>
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	   <%= form_for @worksheet, :html => {:class =>"form-horizontal"} do |f|  %> 
+
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -11,7 +13,6 @@
       </div>
       <div class="modal-body">
       	
-   <%= form_for @worksheet, :html => {:class =>"form-horizontal"} do |f|  %> 
 <div class="form-group">
 	<%= f.label :title %>
 	<%= f.text_field :title, :class => "form-control" %>
