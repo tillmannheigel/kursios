@@ -6,6 +6,8 @@ class StudentsController < ApplicationController
 
   def show
     @student = Student.find(params[:id])
+    @all_courses = Course.all
+    @courses = @student.courses.to_a
   end
   
     def edit

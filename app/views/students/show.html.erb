@@ -5,8 +5,13 @@
 </ol>
 
  <h3><%= @student.email %></h3>
-<dl>
-	<dt><%if admin_signed_in?  %>
+<div class="row">
+<% if courses %>
+
+  <div class="col-md-4">
+  	<div class="panel panel-default">
+  	<div class="panel-heading">
+    <h3 class="panel-title"><%if admin_signed_in?  %>
 	Alle 
 	<%elsif student_signed_in? %>
 	<%if current_student.id == @student.id%>
@@ -15,21 +20,70 @@
 	Gemeinsame
 	<%end%>
 	<%end%>
-	Kurse</dt>
-    <dd>
-    	<div class="container">
-  		<div class="row" id="courses-container">
-    		<div class="col col-md-4">
-<table class="table">
+	Kurse</h3>
+  </div>
+  <ul class="list-group">
+    <% courses.each do |c|%>
+      	 <li class="list-group-item">
+      	 		<%= link_to c.name, course_path(c)  %>
+      	 	</li>
+        <% end %>
+      </ul>
+  </div>
+</div>
+<% end %>  
+<div class="col-md-8">
+	
+</div>
+</div>
+<div class="row">
+
+<% if admin_signed_in?%>
+
+<button class="btn btn-primary" data-toggle="modal" data-target="#myModal"> Bearbeiten </button>
+	<%= form_tag(update_students_courses_path(@student.id), method: 'Patch') do %>
+	<%= hidden_field_tag 'dummy_list', 'dummy' %>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Kurs auswählen</h4>
+      </div>
+      <div class="modal-body">
+      	
+      	<div class="form-group">
+	<%= label_tag :email %>
+	<%= text_field_tag :email, @student.email, :class => "form-control" %>
+</div>
+      	
+	<table class="table">
 	<tr class="table-header">
 	<th>Bezeichnung</th>
+	<th>ausgewählt</th>
 	</tr>
+
+	<% @all_courses.each do |c|%>
 	<tr class="table-body">
-	<% courses.each do |c|%>
-	<td><%= link_to c.name, course_path(c)  %></td>
+	<td><%= c.name %></td>
+	<td><%= check_box_tag  'checks[]', c.id, @courses.include?(c)  %></td>
 	</tr>
-	<%end%>
+	<% end %>
+	</table>     
+	 </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Abbrechen</button>
+	    <%= submit_tag "Aktualisieren", class: "btn btn-primary" %>
+	    <!--<%=button_tag%> --> 
+      </div>
+      	    <%end %>
 
-</table>
-
+    </div>
+  </div>
+</div>
+		<%end%>
+</div>
+<div class="row">
 <p><%= link_to "Zurück", :back %></p>
+</div>
