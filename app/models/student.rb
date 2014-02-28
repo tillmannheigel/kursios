@@ -3,6 +3,7 @@ class Student < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable
   has_and_belongs_to_many :courses
+  has_and_belongs_to_many :groups
   
   def all_worksheets
     worksheets = []

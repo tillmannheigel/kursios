@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140228202829) do
+ActiveRecord::Schema.define(version: 20140228210550) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -64,6 +64,12 @@ ActiveRecord::Schema.define(version: 20140228202829) do
     t.integer "student_id"
   end
 
+  create_table "groups", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "course_id"
+  end
+
   create_table "students", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -83,6 +89,11 @@ ActiveRecord::Schema.define(version: 20140228202829) do
 
   add_index "students", ["email"], name: "index_students_on_email", unique: true
   add_index "students", ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true
+
+  create_table "students_groups", force: true do |t|
+    t.integer "course_id"
+    t.integer "student_id"
+  end
 
   create_table "tutors", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -119,6 +130,7 @@ ActiveRecord::Schema.define(version: 20140228202829) do
     t.integer  "attachment_id"
     t.integer  "course_id"
     t.string   "description"
+    t.integer  "contribution_id"
   end
 
 end
