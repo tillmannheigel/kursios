@@ -3,8 +3,15 @@
   <li><%= link_to 'Students', students_path %></li>
   <li class="active"><%= @student.email %></li>
 </ol>
-
+<div class="row">
+<div class="col-md-8">
  <h3><%= @student.email %></h3>
+</div>
+<div class="col-md-4">
+	         <%= render 'students/edit' %>
+
+</div>
+</div>
 <div class="row">
 <% if courses.count > 0 %>
 
@@ -36,54 +43,9 @@
 	
 </div>
 </div>
-<div class="row">
 
-<% if admin_signed_in?%>
 
-<button class="btn btn-primary" data-toggle="modal" data-target="#myModal"> Bearbeiten </button>
-	<%= form_tag(update_students_courses_path(@student.id), method: 'Patch') do %>
-	<%= hidden_field_tag 'dummy_list', 'dummy' %>
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Kurs auswählen</h4>
-      </div>
-      <div class="modal-body">
-      	
-      	<div class="form-group">
-	<%= label_tag :email %>
-	<%= text_field_tag :email, @student.email, :class => "form-control" %>
-</div>
-      	
-	<table class="table">
-	<tr class="table-header">
-	<th>Bezeichnung</th>
-	<th>ausgewählt</th>
-	</tr>
 
-	<% @all_courses.each do |c|%>
-	<tr class="table-body">
-	<td><%= c.name %></td>
-	<td><%= check_box_tag  'checks[]', c.id, @courses.include?(c)  %></td>
-	</tr>
-	<% end %>
-	</table>     
-	 </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Abbrechen</button>
-	    <%= submit_tag "Aktualisieren", class: "btn btn-primary" %>
-	    <!--<%=button_tag%> --> 
-      </div>
-      	    <%end %>
-
-    </div>
-  </div>
-</div>
-		<%end%>
-</div>
 <div class="row">
 <p><%= link_to "Zurück", students_path %></p>
 </div>

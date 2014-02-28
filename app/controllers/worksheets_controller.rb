@@ -29,7 +29,7 @@ class WorksheetsController < ApplicationController
     @myWorksheet.course_id = params[:course][:course_id]
     if @myWorksheet.save
       if !params[:worksheet][:data]
-      redirect_to worksheets_path
+      redirect_to worksheet_path(@myWorksheet)
       else
         addAttachmentToWorksheet @myWorksheet, params[:worksheet][:data]
       end
@@ -46,6 +46,7 @@ class WorksheetsController < ApplicationController
   
   def show
     @worksheet = Worksheet.find(params[:id])
+    @courses = Course.all
     if @worksheet.attachment_id
       @hasAttachment = true
       attachment = Attachment.find(@worksheet.attachment_id)
@@ -82,14 +83,14 @@ class WorksheetsController < ApplicationController
         if @attachment.save
             worksheet.attachment = @attachment
             if worksheet.save
-            redirect_to worksheets_path
+            redirect_to worksheet_path(worksheet)
             flash[:notice] = "Thank you for your submission..."
             else
-            redirect_to worksheets_path
+            redirect_to worksheet_path(worksheet)
             flash[:error] = "There was a problem storing your attachment."
             end
         else
-            redirect_to worksheets_path
+            redirect_to worksheet_path(worksheet)
             flash[:error] = "There was a problem submitting your attachment."
 
         end
