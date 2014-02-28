@@ -15,7 +15,6 @@
 	<th>last sign_in</th>
 	<th>created</th>
 	<th>courses</th>
-	<th>bearbeiten</th>
 	<th>löschen</th>
 	<%end%>
 	</tr>
@@ -29,7 +28,6 @@
 	<td><%= s.last_sign_in_at %></td>
 	<td><%= s.created_at %></td>
 	<td><%= s.courses.to_a.count %></td>
-	<td><%= link_to '<i class="glyphicon glyphicon-pencil"></i>'.html_safe,  edit_student_path(s.id) %></td>
 	<td><%= link_to '<i class="glyphicon glyphicon-remove" alt="delete"></i>'.html_safe, student_path(s.id),data: {confirm: "Wirklich löschen"}, method: :delete %></td>
 	<% end %>
 	</tr>

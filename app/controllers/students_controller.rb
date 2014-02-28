@@ -71,14 +71,14 @@ class StudentsController < ApplicationController
         end
       end
       if student.save
-        redirect_to edit_student_path(params[:id])
+        redirect_to student_path(params[:id])
         flash[:notice] = "User has been updated."
       else
-        redirect_to edit_student_path(params[:id])
+        redirect_to student_path(params[:id])
         flash[:error] = "User has not been updated...oh my dear, what a mess :("
       end
     else
-     redirect_to edit_student_path(params[:id])
+     redirect_to student_path(params[:id])
         flash[:error] = "User has not been updated...oh my dear, what a mess :("
     end   
   end 

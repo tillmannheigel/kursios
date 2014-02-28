@@ -6,7 +6,7 @@
 
  <h3><%= @student.email %></h3>
 <div class="row">
-<% if courses %>
+<% if courses.count > 0 %>
 
   <div class="col-md-4">
   	<div class="panel panel-default">
@@ -85,5 +85,5 @@
 		<%end%>
 </div>
 <div class="row">
-<p><%= link_to "Zurück", :back %></p>
+<p><%= link_to "Zurück", students_path %></p>
 </div>
