@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140228210550) do
+ActiveRecord::Schema.define(version: 20140228211436) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -38,7 +38,8 @@ ActiveRecord::Schema.define(version: 20140228210550) do
     t.binary   "data"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "worksheet_id"
+    t.integer  "attachable_id"
+    t.string   "attachable_type"
   end
 
   create_table "contributions", force: true do |t|
