@@ -91,9 +91,16 @@ class WorksheetsController < ApplicationController
    
    def contribute
      worksheet = Worksheet.find(params[:id])
+     worksheet.contributions.each do |c|
+       if c.student = current_student
+         contribution = c
+       end
+     end
+     if !contribution.nil?
      contribution = Contribution.new
      contribution.notes = params[:notes]
      contribution.student = current_student
+     end
      attachment = Attachment.new
      attachment.uploaded_file = params[:data]
      if attachment.save

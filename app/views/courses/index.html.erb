@@ -1,54 +1,117 @@
 <ol class="breadcrumb">
-  <li><%= link_to 'Home', root_path %></li>
-  <li class="active">Kurse</li>
+	<li>
+		<%= link_to 'Home', root_path %>
+	</li>
+	<li class="active">
+		Kurse
+	</li>
 </ol>
 
-
-	<div class="row">
-<div class="col-md-8">
- <h3>	<%if admin_signed_in? %> All 
-	<%else %> Your
-	<%end%>
-	Courses</h3>
+<div class="row">
+	<div class="col-md-8">
+		<h3> <%if admin_signed_in? %> All
+		<%else %> Your
+		<%end%>
+		Courses</h3>
+	</div>
+	<div class="col-md-4">
+		<%if admin_signed_in?%>
+		<%= button_to "Anlegen", new_course_path, :class=>"btn btn-default pull-right" %>
+		<%end%>
+	</div>
 </div>
-<div class="col-md-4">
-<%if admin_signed_in?%>
-	<%= button_to "Anlegen", new_course_path, :class=>"btn btn-default pull-right" %>
-<%end%>
+<div class="hidden-xs">
+
+	<table class="table">
+		<tr class="table-header">
+			<th>Name</th>
+			<th>Nachricht an Tutor</th>
+
+			<% if admin_signed_in?%>
+
+			<th>Tutor</th>
+			<th>Teilnehmer</th>
+			<th>Bearbeiten</th>
+			<th>Löschen</th>
+			<% end %>
+		</tr>
+
+		<% @courses.each do |c|%>
+		<tr class="table-body">
+			<td><%= link_to c.name,  course_path(c.id) %></td>
+			<td><%= link_to '<i class="glyphicon glyphicon-envelope"></i>'.html_safe,  send_message_path(c.tutor.id) if c.tutor %></td>
+
+			<% if admin_signed_in?%>
+
+			<td><%= c.tutor.email if c.tutor %></td>
+			<td><%= c.students.count %> <td><%= link_to '<i class="glyphicon glyphicon-pencil"></i>'.html_safe,  edit_course_path(c.id) %></td>
+			<td><%= link_to '<i class="glyphicon glyphicon-remove" alt="delete"></i>'.html_safe, course_path(c.id),data: {confirm: "Wirklich löschen"}, method: :delete %></td>
+		</tr>
+		<% end %>
+		<% end %>
+
+	</table>
 </div>
-</div>
 
-<table class="table">
-	<tr class="table-header">
-	<th>Name</th>		
-	<th>Nachricht an Tutor</th>
-
-	<% if admin_signed_in?%>
-
-	<th>Tutor</th>
-	<th>Teilnehmer</th>
-	<th>Bearbeiten</th>
-	<th>Löschen</th>
-	<% end %>
-	</tr>
+<div class="visible-xs">
 
 	<% @courses.each do |c|%>
-	<tr class="table-body">
-	<td><%= link_to c.name,  course_path(c.id) %></td>
-	<td><%= link_to '<i class="glyphicon glyphicon-envelope"></i>'.html_safe,  send_message_path(c.tutor.id) if c.tutor %></td>
-	
-	<% if admin_signed_in?%>
 
-	<td><%= c.tutor.email if c.tutor %></td>
-	<td><%= c.students.count %>
-	<td><%= link_to '<i class="glyphicon glyphicon-pencil"></i>'.html_safe,  edit_course_path(c.id) %></td>
-	<td><%= link_to '<i class="glyphicon glyphicon-remove" alt="delete"></i>'.html_safe, course_path(c.id),data: {confirm: "Wirklich löschen"}, method: :delete %></td>
-	</tr>
-	<% end %>
-	<% end %>
-	
-</table>
+	<div class="col-md-4">
+		<div class="panel panel-default">
 
-		
-		
+			<div class="panel-heading">
+				<ul class="list-inline">
+					<li>
+
+						<%= link_to '<i class="glyphicon glyphicon-eye-open"></i>'.html_safe,  course_path(c.id) %>
+					</li>
+					<li>
+						<h3 class="panel-title"><%= link_to c.name, course_path(c.id)  %></h3>
+					</li>
+				</ul>
+			</div>
+
+			<div class="panel-body">
+				<ul class="list-group">
+					<% if c.tutor %>
+
+					<li class="list-group-item">
+
+						<ul class="list-inline">
+
+							<li>
+								<%= link_to '<i class="glyphicon glyphicon-envelope"></i>'.html_safe,  send_message_path(c.tutor.id) if c.tutor %>
+							</li>
+							<li>
+								<b>Tutor </b>
+							</li>
+							<li>
+								<%= link_to c.tutor.email,  send_message_path(c.tutor.id) if c.tutor %>
+							</li>
+						</ul>
+					</li>
+						<%end%>
+													<% if admin_signed_in?%>
+
+					<li class="list-group-item">
+
+						<ul class="list-inline">
+
+							<li>
+								<%= link_to '<i class="glyphicon glyphicon-remove" alt="delete"></i>'.html_safe, course_path(c.id),data: {confirm: "Wirklich löschen"}, method: :delete %>
+							</li>
+
+						</ul>
+
+					</li>
+												<% end %>
+
+				</ul>
+
+			</div>
+
+		</div>
+		<%end%>
+	</div>
 

@@ -1,44 +1,88 @@
 <ol class="breadcrumb">
-  <li><%= link_to 'Home', root_path %></li>
-  <li class="active">Worksheets</li>
+	<li>
+		<%= link_to 'Home', root_path %>
+	</li>
+	<li class="active">
+		Worksheets
+	</li>
 </ol>
 
+<div class="row">
+	<div class="col-md-8">
+		<h3><%if admin_signed_in? %> All Worksheets
+		<%else %> Your Worksheets
+		<%end%></h3>
+	</div>
+	<div class="col-md-4">
+		<% if admin_signed_in?%>
 
-	<div class="row">
-<div class="col-md-8">
- <h3><%if admin_signed_in? %> All Worksheets
-	<%else %> Your Worksheets
-	<%end%></h3>
-</div>
-<div class="col-md-4">
-	<% if admin_signed_in?%>
-
-<%= button_to "Anlegen", new_worksheet_path, :class=>"btn btn-default pull-right" %>
+		<%= button_to "Anlegen", new_worksheet_path, :class=>"btn btn-default pull-right" %>
 		<%end%>
 
+	</div>
 </div>
+
+<div class="hidden-xs">
+
+	<table class="table">
+		<tr class="table-header">
+			<th>Zettel</th>
+			<th>Kurs</th>
+			<th>Abgabedatum</th>
+			<% if admin_signed_in?%>
+			<th>Löschen</th>
+			<%end%>
+		</tr>
+		<% @worksheets.each do |w|%>
+		<tr class="table-body">
+			<td><%= link_to w.title, worksheet_path(w.id)  %></td>
+			<td><%= w.course.name if w.course  %></td>
+			<td><%= w.filling_date %></td>
+			<% if admin_signed_in?%>
+			<td><%= link_to '<i class="glyphicon glyphicon-remove" alt="delete"></i>'.html_safe, delete_worksheet_path(w.id),data: {confirm: "Wirklich löschen"}, method: :delete %></td>
+			<% end %>
+		</tr>
+		<% end %>
+	</table>
 </div>
-	
-	
-	
-<table class="table">
-	<tr class="table-header">
-	<th>Zettel</th>
-	<th>Kurs</th>
-	<th>Abgabedatum</th>
-	<% if admin_signed_in?%>
-	<th>Löschen</th>
-	<%end%>
-	</tr>
+<div class="visible-xs">
+
 	<% @worksheets.each do |w|%>
-	<tr class="table-body">
-	<td><%= link_to w.title, worksheet_path(w.id)  %></td>
-	<td><%=w.course.name if w.course  %></td>
-	<td><%= w.filling_date %></td>
-	<% if admin_signed_in?%>
-	<td><%= link_to '<i class="glyphicon glyphicon-remove" alt="delete"></i>'.html_safe, delete_worksheet_path(w.id),data: {confirm: "Wirklich löschen"}, method: :delete %></td>
-	<% end %>
-	</tr>
-	<% end %>
-</table>
+	<div class="col-md-4">
+		<div class="panel panel-default">
+
+			<div class="panel-heading">
+				<small><%= w.course.name if w.course%></small>
+
+				<h3 class="panel-title"><%= link_to w.title, worksheet_path(w.id)  %></h3>
+
+			</div>
+
+			<div class="panel-body">
+				<ul class="list-group">
+					<li class="list-group-item">
+						<span class="badge"></span>
+						<b>Abgabe </b><%= w.filling_date %>
+
+					</li>
+					<li class="list-group-item">
+						<ul class="list-inline">
+							<li>
+								<%= link_to '<i class="glyphicon glyphicon-file" alt="öffnen"></i>'.html_safe, worksheet_path(w.id) %>
+							</li>
+							<li>
+								<% if admin_signed_in?%>
+						<%= link_to '<i class="glyphicon glyphicon-remove" alt="delete"></i>'.html_safe, delete_worksheet_path(w.id),data: {confirm: "Wirklich löschen"}, method: :delete %></td>
+						<% end %>
+							</li>
+						</ul>
+
+					</li>
+				</ul>
+
+			</div>
+
+		</div>
+		<%end%>
+	</div>
 
