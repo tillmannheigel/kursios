@@ -21,7 +21,13 @@
         <% end %>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-      	 <%= render 'layouts/navigation_right' %>
+      	<% if admin_signed_in?%>
+        <%= render 'layouts/navigation_right_admins' %>
+        <% elsif student_signed_in? %>
+        <%= render 'layouts/navigation_right_students' %>
+        <% else %>
+        <%= render 'layouts/navigation_right_guests' %>
+        <% end %>
       </ul>
     </div>
   </div>

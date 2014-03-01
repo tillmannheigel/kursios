@@ -1,4 +1,4 @@
-<% if admin_signed_in?%>
+<% if admin_signed_in? %>
 
 <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal"> Bearbeiten </button>
 	<%= form_tag(update_students_courses_path(@student.id), method: 'Patch') do %>

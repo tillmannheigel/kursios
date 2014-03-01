@@ -1,5 +1,6 @@
 Tillmannheigel::Application.routes.draw do
   root "home#index"
+  get "download/:id"=> "downloads#download", as:"download"
   get "info/info", as:"info"
   post "students/create" => "students#create", as:"create_student_as_admin"
   patch "students/update/:id" => "students#updateCourses", as:"update_students_courses"

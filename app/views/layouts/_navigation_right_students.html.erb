@@ -1,0 +1,8 @@
+<li>
+	<%= link_to current_student.email, student_path(current_student)%></a>
+</li>
+<li>
+	<div class="">
+		<%= link_to 'Log out', destroy_student_session_path , :class=>"btn btn-danger navbar-btn",:method =>  :delete %>
+	</div>
+</li>

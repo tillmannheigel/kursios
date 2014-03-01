@@ -64,7 +64,7 @@
     		<% if @worksheet.attachment.nil?%> 			
 			<small>--- noch kein Übungsblatt hochgeladen ---</small>
 		 <%else%>
-			<%= link_to @worksheet.attachment.filename, { :action=>"download", :data=> @worksheet.attachment , :controller => "downloads"}, :remote=>true %>
+			<%= link_to @worksheet.attachment.filename, download_path( @worksheet.attachment), :target => "_blank" %>
 			<br><small>Bitte mit "Ziel speichern unter..." downloaden</small> 
 		<%end%>
   </div>
@@ -97,14 +97,15 @@
 			<%= c.student.email if c.student %>
 			<%= c.group.email if c.group %>
 			<br>		
-			<% c.attachments.each do |a| %>			
-			<%= link_to a.filename, { :action=>"download", :data=> a , :controller => "downloads"}, :remote=>true %>
+			<% c.attachments.each do |a| %>	
+			<br >
+			<%= link_to a.filename, download_path(a), :target => "_blank"%>
 			<%= link_to '<i class="glyphicon glyphicon-remove pull-right" alt="delete"></i>'.html_safe, delete_attachment_path(a.id),data: {confirm: "Wirklich löschen"}, method: :delete %>
+			<%end%>
 			</li>
 		<%end%>
 		</ul>
 	<%end%>
-<%end%>
 
   </div>
   
