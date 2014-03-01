@@ -90,13 +90,14 @@ class WorksheetsController < ApplicationController
     end
    
    def contribute
+     contribution = nil
      worksheet = Worksheet.find(params[:id])
      worksheet.contributions.each do |c|
        if c.student = current_student
          contribution = c
        end
      end
-     if !contribution.nil?
+     if !contribution
      contribution = Contribution.new
      contribution.notes = params[:notes]
      contribution.student = current_student
