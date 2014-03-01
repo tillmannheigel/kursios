@@ -4,6 +4,7 @@ class Student < ActiveRecord::Base
   devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable
   has_and_belongs_to_many :courses
   has_and_belongs_to_many :groups
+  has_many :contributions
   
   def all_worksheets
     worksheets = []

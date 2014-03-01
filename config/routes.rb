@@ -3,6 +3,8 @@ Tillmannheigel::Application.routes.draw do
   get "info/info", as:"info"
   post "students/create" => "students#create", as:"create_student_as_admin"
   patch "students/update/:id" => "students#updateCourses", as:"update_students_courses"
+  post "worksheet/contribute/:id" => "worksheets#contribute", as: "worksheet_contribute"
+  delete "worksheets/:id" => "worksheets#deleteAttachment", as: "delete_attachment"
   get "students/send/:id"=> "students#sendMessage", as:"send_message"
   devise_for :admins
   devise_for :students

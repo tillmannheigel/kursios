@@ -47,14 +47,7 @@ class WorksheetsController < ApplicationController
   def show
     @worksheet = Worksheet.find(params[:id])
     @courses = Course.all
-    if @worksheet.attachment_id
-      @hasAttachment = true
-      attachment = Attachment.find(@worksheet.attachment_id)
-      @filename = attachment.filename
-      @attachment_id = attachment.id
-    else
-      @hasAttachment = false
-    end
+    @attachment = @worksheet.attachment
   end
 
   def destroy
@@ -93,8 +86,46 @@ class WorksheetsController < ApplicationController
             redirect_to worksheet_path(worksheet)
             flash[:error] = "There was a problem submitting your attachment."
 
-        end
-        
+        end 
     end
    
+   def contribute
+     worksheet = Worksheet.find(params[:id])
+     contribution = Contribution.new
+     contribution.notes = params[:notes]
+     contribution.student = current_student
+     attachment = Attachment.new
+     attachment.uploaded_file = params[:data]
+     if attachment.save
+         attachment = contribution.attachments << attachment
+         if contribution.save
+         worksheet.contributions << contribution
+         redirect_to worksheet_path(params[:id])
+          flash[:notice] = "Thank you for your submission..."
+         else
+         redirect_to worksheet_path(worksheet)
+         flash[:error] = "There was a problem submitting your attachment."
+         end
+   else
+   redirect_to worksheet_path(worksheet)
+   flash[:error] = "There was a problem submitting your attachment."
+   end
+   end
+   
+   def deleteAttachment
+     attachment = Attachment.find(params[:id])
+     contribution = attachment.attachable
+     if admin_signed_in? || student_signed_in?&&(current_student == contribution.student)
+       attachment.destroy
+       if !(contribution.attachments.count > 0)
+          contribution.destroy
+       end
+       redirect_to :back
+       flash[:notice] = "Deleted"
+     else
+       redirect_to :back
+       flash[:error] = "Not Deleted"
+     end
+   end
+        
 end

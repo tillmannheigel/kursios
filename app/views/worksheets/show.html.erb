@@ -11,7 +11,8 @@
 </div>
 <div class="col-md-4">
 	         <%= render 'worksheets/edit' %>
-
+	         <%= render 'worksheets/upload' %>
+			
 </div>
 </div>
 <div class="row">
@@ -70,5 +71,48 @@
 </div>
 </div>
 <%end%>
+</div>
+
+
+<div class="row">
+<div class="col-md-4"></div>
+<div class="col-md-4"></div>
+
+<div class="col-md-4">
+  	<div class="panel panel-default">
+  
+  <div class="panel-heading">
+    <h3 class="panel-title">Abgaben</h3>
+  </div>
+  
+  <div class="panel-body">
+    	 <% if !(@worksheet.contributions.count > 0)%> 			
+			<small>--- noch keine Abgabe hochgeladen ---</small>
+		 <%else%>
+		  <ul class="list-group">
+
+			<% @worksheet.contributions.each do |c| %>
+			<% next if (student_signed_in?) && !(c.student == current_student)%>
+			<li class="list-group-item">
+			<%= c.student.email if c.student %>
+			<%= c.group.email if c.group %>
+			<br>		
+			<% c.attachments.each do |a| %>			
+			<%= link_to a.filename, { :action=>"download", :data=> a , :controller => "downloads"}, :remote=>true %>
+			<%= link_to '<i class="glyphicon glyphicon-remove pull-right" alt="delete"></i>'.html_safe, delete_attachment_path(a.id),data: {confirm: "Wirklich löschen"}, method: :delete %>
+			</li>
+		<%end%>
+		</ul>
+	<%end%>
+<%end%>
+
+  </div>
+  
+	</div>
+</div>
+	
+</div>
+
+	
 </div>
 <p><%= link_to "Zurück", :back %></p>
