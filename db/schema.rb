@@ -44,11 +44,10 @@ ActiveRecord::Schema.define(version: 20140228233531) do
 
   create_table "contributions", force: true do |t|
     t.integer  "group_id"
-    t.datetime "sent_at"
     t.integer  "worksheet_id"
     t.string   "notes"
-    t.datetime "updated_at"
     t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "student_id"
   end
 
